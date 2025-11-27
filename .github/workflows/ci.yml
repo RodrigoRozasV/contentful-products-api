@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: contentful_products
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm run test:cov
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: contentful_products
+          CONTENTFUL_SPACE_ID: bbd24zg4yngm
+          CONTENTFUL_ACCESS_TOKEN: wXfbqDOLix1ksxVH8NcRX1oE4KYytPW-ULqpXCxx3RU
+          CONTENTFUL_ENVIRONMENT: master
+          CONTENTFUL_CONTENT_TYPE: product
+          JWT_SECRET: e3bf76123ac0c41cf6b0e94bf932a6d747f6d27ee28f3df1f07f8a61cbb845ff5bd8c4f867ac234de808ed72f8a28f7cc61bb1c26a762a8fd5588c043bda41b2
+          JWT_EXPIRATION: 24h
+          PORT: 3000
+          NODE_ENV: test
+
+      - name: Check test coverage
+        run: |
+          COVERAGE=$(cat coverage/coverage-summary.json | jq '.total.statements.pct')
+          echo "Test coverage: $COVERAGE%"
+          if (( $(echo "$COVERAGE < 30" | bc -l) )); then
+            echo "Test coverage is below 30%"
+            exit 1
+          fi
+
+      - name: Build application
+        run: npm run build
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: contentful_products
+          CONTENTFUL_SPACE_ID: bbd24zg4yngm
+          CONTENTFUL_ACCESS_TOKEN: wXfbqDOLix1ksxVH8NcRX1oE4KYytPW-ULqpXCxx3RU
+          CONTENTFUL_ENVIRONMENT: master
+          CONTENTFUL_CONTENT_TYPE: product
+          JWT_SECRET: e3bf76123ac0c41cf6b0e94bf932a6d747f6d27ee28f3df1f07f8a61cbb845ff5bd8c4f867ac234de808ed72f8a28f7cc61bb1c26a762a8fd5588c043bda41b2
+          JWT_EXPIRATION: 24h
+          PORT: 3000
+          NODE_ENV: production
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: always()
+        with:
+          files: ./coverage/coverage-final.json
+          fail_ci_if_error: false
