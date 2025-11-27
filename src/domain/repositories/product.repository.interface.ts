@@ -1,7 +1,7 @@
 import { Product } from '../entities/Product';
-import { Pagination } from '../../utils/pagination';
-import { PriceRange } from '../../utils/price-range';
-import { DateRange } from '../../utils/date-range';
+import { Pagination } from '@/utils/pagination';
+import { PriceRange } from '@/utils/price-range';
+import { DateRange } from '@/utils/date-range';
 
 export interface IProductRepository {
   save(product: Product): Promise<Product>;

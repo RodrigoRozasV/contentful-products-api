@@ -50,7 +50,6 @@ export class ProductRepository implements IProductRepository {
   ): Promise<{ items: Product[]; total: number }> {
     const queryBuilder = this.ormRepository.createQueryBuilder('product');
 
-    // Aplicar filtros
     if (filters?.name) {
       queryBuilder.andWhere('product.name ILIKE :name', {
         name: `%${filters.name}%`,
@@ -75,7 +74,6 @@ export class ProductRepository implements IProductRepository {
       });
     }
 
-    // Paginación
     queryBuilder.skip(pagination.skip).take(pagination.limit);
 
     const [entities, total] = await queryBuilder.getManyAndCount();

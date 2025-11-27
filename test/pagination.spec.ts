@@ -1,4 +1,4 @@
-import { Pagination } from '@/utils/pagination';
+import { Pagination } from '../src/utils/pagination';
 
 describe('Pagination Value Object', () => {
   describe('constructor', () => {

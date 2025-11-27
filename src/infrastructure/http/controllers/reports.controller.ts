@@ -4,7 +4,7 @@ import { JwtAuthGuard } from '@/infrastructure/auth/guards/jwt-auth.guard';
 import { GetDeletedProductsReportUseCase } from '@/application/use-cases/get-deleted-products-report.use-case';
 import { GetNonDeletedProductsReportUseCase } from '@/application/use-cases/get-non-deleted-products-report.use-case';
 import { GetProductsByCategoryReportUseCase } from '@/application/use-cases/get-products-by-category-report.use-case';
-import { ReportFiltersHttpDto } from '../dto/report-filters.dto';
+import { ReportFiltersHttpDto } from '../../../application/dto/report-filters.dto';
 import { DeletedProductsReportResponseDto } from '../dto/responses/deleted-products-report-response.dto';
 import { NonDeletedProductsReportResponseDto } from '../dto/responses/non-deleted-products-report-response.dto';
 import { CategoryReportResponseDto } from '../dto/responses/category-report-response.dto';

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GetProductsUseCase } from '../src/application/use-cases/get-products.use-case';
-import { IProductRepository } from '@/domain/repositories/product.repository.interface';
-import { Product } from '@/domain/entities/Product';
+import { IProductRepository } from '../src/domain/repositories/product.repository.interface';
+import { Product } from '../src/domain/entities/Product';
 import { ProductFiltersDto } from '../src/application/dto/product-filters.dto';
 
 describe('GetProductsUseCase', () => {

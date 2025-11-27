@@ -2,8 +2,8 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsDateString, IsBoolean } from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class ReportFiltersHttpDto {
-   @ApiPropertyOptional({
+export class ReportFiltersRequestDto {
+  @ApiPropertyOptional({
     description: 'Start date for filtering (ISO 8601 format)',
     example: '2024-01-01T00:00:00.000Z',
   })

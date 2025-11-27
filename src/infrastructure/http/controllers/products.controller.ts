@@ -13,7 +13,7 @@ import { GetProductsUseCase } from '@/application/use-cases/get-products.use-cas
 import { GetProductByIdUseCase } from '@/application/use-cases/get-product-by-id.use-case';
 import { DeleteProductUseCase } from '@/application/use-cases/deleted-product.use-case';
 import { SyncProductsFromContentfulUseCase } from '@/application/use-cases/sync-products-from-contentful.use-case';
-import { QueryProductsHttpDto } from '../dto/query-products.dto';
+import { QueryProductsHttpDto } from '../dto/requests/query-products.dto';
 import { ProductFiltersDto } from '@/application/dto/product-filters.dto';
 import { PaginatedProductsResponseDto } from '../dto/responses/paginated-products-response.dto';
 import { ProductResponseDto } from '../dto/responses/product-response.dto';

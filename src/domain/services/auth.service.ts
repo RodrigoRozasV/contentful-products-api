@@ -11,8 +11,7 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
-
-  // Simple method to generate a token for testing
+  
   async login(username: string) {
     return this.generateToken(username);
   }
