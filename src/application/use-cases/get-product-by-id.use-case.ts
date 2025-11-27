@@ -8,11 +8,11 @@ export class GetProductByIdUseCase {
 
   async execute(id: string): Promise<Product> {
     const product = await this.productRepository.findById(id);
-    
+
     if (!product) {
       throw new NotFoundException(`Product with ID ${id} not found`);
     }
-    
+
     return product;
   }
 }

@@ -41,7 +41,8 @@ export class ReportsController {
   @Get('non-deleted-products')
   @ApiOperation({
     summary: 'Get statistics of non-deleted products with filters',
-    description: 'Returns statistics about non-deleted products with optional date and price filters',
+    description:
+      'Returns statistics about non-deleted products with optional date and price filters',
   })
   @ApiResponse({
     status: 200,

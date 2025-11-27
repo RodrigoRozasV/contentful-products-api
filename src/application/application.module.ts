@@ -39,40 +39,28 @@ import { GetProductsByCategoryReportUseCase } from './use-cases/get-products-by-
     {
       provide: SyncProductsFromContentfulUseCase,
       useFactory: (productRepository, contentfulClient) => {
-        return new SyncProductsFromContentfulUseCase(
-          productRepository,
-          contentfulClient,
-        );
+        return new SyncProductsFromContentfulUseCase(productRepository, contentfulClient);
       },
       inject: ['IProductRepository', 'IContentfulClient'],
     },
     {
       provide: GetDeletedProductsReportUseCase,
       useFactory: (productRepository, statisticsService) => {
-        return new GetDeletedProductsReportUseCase(
-          productRepository,
-          statisticsService,
-        );
+        return new GetDeletedProductsReportUseCase(productRepository, statisticsService);
       },
       inject: ['IProductRepository', 'ProductStatisticsService'],
     },
     {
       provide: GetNonDeletedProductsReportUseCase,
       useFactory: (productRepository, statisticsService) => {
-        return new GetNonDeletedProductsReportUseCase(
-          productRepository,
-          statisticsService,
-        );
+        return new GetNonDeletedProductsReportUseCase(productRepository, statisticsService);
       },
       inject: ['IProductRepository', 'ProductStatisticsService'],
     },
     {
       provide: GetProductsByCategoryReportUseCase,
       useFactory: (productRepository, statisticsService) => {
-        return new GetProductsByCategoryReportUseCase(
-          productRepository,
-          statisticsService,
-        );
+        return new GetProductsByCategoryReportUseCase(productRepository, statisticsService);
       },
       inject: ['IProductRepository', 'ProductStatisticsService'],
     },

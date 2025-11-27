@@ -170,23 +170,23 @@ export class ProductRepository implements IProductRepository {
   }
 
   async findProductsByCategory(): Promise<ProductsByCategoryResult[]> {
-  const results = await this.ormRepository
-    .createQueryBuilder('product')
-    .select('product.category', 'category')
-    .addSelect('COUNT(*)', 'count')
-    .addSelect('AVG(product.price)', 'averagePrice')
-    .addSelect('MIN(product.price)', 'minPrice')
-    .addSelect('MAX(product.price)', 'maxPrice')
-    .where('product.category IS NOT NULL')
-    .groupBy('product.category')
-    .getRawMany();
+    const results = await this.ormRepository
+      .createQueryBuilder('product')
+      .select('product.category', 'category')
+      .addSelect('COUNT(*)', 'count')
+      .addSelect('AVG(product.price)', 'averagePrice')
+      .addSelect('MIN(product.price)', 'minPrice')
+      .addSelect('MAX(product.price)', 'maxPrice')
+      .where('product.category IS NOT NULL')
+      .groupBy('product.category')
+      .getRawMany();
 
-  return results.map((r) => ({
-    category: r.category,
-    count: parseInt(r.count, 10),
-    averagePrice: r.averagePrice !== null ? parseFloat(r.averagePrice) : null,
-    minPrice: r.minPrice !== null ? parseFloat(r.minPrice) : null,
-    maxPrice: r.maxPrice !== null ? parseFloat(r.maxPrice) : null,
-  }));
+    return results.map((r) => ({
+      category: r.category,
+      count: parseInt(r.count, 10),
+      averagePrice: r.averagePrice !== null ? parseFloat(r.averagePrice) : null,
+      minPrice: r.minPrice !== null ? parseFloat(r.minPrice) : null,
+      maxPrice: r.maxPrice !== null ? parseFloat(r.maxPrice) : null,
+    }));
   }
 }

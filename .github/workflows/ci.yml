@@ -91,5 +91,5 @@ jobs:
         uses: codecov/codecov-action@v3
         if: always()
         with:
-          files: ./coverage/coverage-final.json
+          files: ./coverage/coverage-summary.json
           fail_ci_if_error: false

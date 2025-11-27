@@ -6,9 +6,7 @@ import { SyncProductsFromContentfulUseCase } from '../../application/use-cases/s
 export class SyncProductsScheduler {
   private readonly logger = new Logger(SyncProductsScheduler.name);
 
-  constructor(
-    private readonly syncProductsUseCase: SyncProductsFromContentfulUseCase,
-  ) {}
+  constructor(private readonly syncProductsUseCase: SyncProductsFromContentfulUseCase) {}
 
   @Cron(CronExpression.EVERY_HOUR)
   async handleSyncProducts() {

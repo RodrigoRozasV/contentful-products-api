@@ -23,11 +23,13 @@ export interface IProductRepository {
   countByDateRange(dateRange: DateRange): Promise<number>;
   countWithPriceByDateRange(dateRange: DateRange): Promise<number>;
   countWithoutPriceByDateRange(dateRange: DateRange): Promise<number>;
-  findProductsByCategory(): Promise<Array<{
-    category: string;
-    count: number;
-    averagePrice: number | null;
-    minPrice: number | null;
-    maxPrice: number | null;
-  }>>;
+  findProductsByCategory(): Promise<
+    Array<{
+      category: string;
+      count: number;
+      averagePrice: number | null;
+      minPrice: number | null;
+      maxPrice: number | null;
+    }>
+  >;
 }

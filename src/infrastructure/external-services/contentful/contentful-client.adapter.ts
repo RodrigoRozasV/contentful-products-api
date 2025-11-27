@@ -106,16 +106,17 @@ export class ContentfulClientAdapter implements IContentfulClient {
     return undefined;
   }
 
-  private buildMetadata(fields: Record<string, any>, sys: Record<string, any>): Record<string, any> {
+  private buildMetadata(
+    fields: Record<string, any>,
+    sys: Record<string, any>,
+  ): Record<string, any> {
     const metadata: Record<string, any> = {};
 
     try {
       for (const [key, value] of Object.entries(fields)) {
         if (this.isPrimitive(value)) {
-
           metadata[key] = value;
         } else if (Array.isArray(value)) {
-
           metadata[key] = value.map((item) => {
             if (this.isPrimitive(item)) {
               return item;
@@ -145,7 +146,6 @@ export class ContentfulClientAdapter implements IContentfulClient {
       if (sys.contentType && sys.contentType.sys && sys.contentType.sys.id) {
         metadata.contentType = sys.contentType.sys.id;
       }
-
     } catch (error) {
       this.logger.warn('Error building metadata', error);
     }
@@ -174,7 +174,7 @@ export class ContentfulClientAdapter implements IContentfulClient {
         }
       }
     } catch (error) {
-        this.logger.warn('Error extracting simple fields for metadata', error);
+      this.logger.warn('Error extracting simple fields for metadata', error);
     }
 
     return simple;

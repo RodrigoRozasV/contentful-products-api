@@ -11,7 +11,7 @@ export class GetProductsByCategoryReportUseCase {
 
   async execute() {
     const categoriesData = await this.productRepository.findProductsByCategory();
-    
+
     const totalProducts = await this.productRepository.countTotal();
     const productsWithCategory = categoriesData.reduce((sum, cat) => sum + cat.count, 0);
     const productsWithoutCategory = totalProducts - productsWithCategory;
@@ -20,9 +20,7 @@ export class GetProductsByCategoryReportUseCase {
     const categoriesBreakdown = categoriesData.map((cat) => ({
       category: cat.category,
       count: cat.count,
-      averagePrice: cat.averagePrice 
-        ? this.statisticsService.roundPrice(cat.averagePrice) 
-        : null,
+      averagePrice: cat.averagePrice ? this.statisticsService.roundPrice(cat.averagePrice) : null,
       minPrice: cat.minPrice ? this.statisticsService.roundPrice(cat.minPrice) : null,
       maxPrice: cat.maxPrice ? this.statisticsService.roundPrice(cat.maxPrice) : null,
     }));

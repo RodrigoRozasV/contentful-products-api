@@ -9,7 +9,7 @@ export class Pagination {
     if (limit < 1 || limit > 5) {
       throw new Error('Limit must be between 1 and 5');
     }
-    
+
     this._page = page;
     this._limit = limit;
   }

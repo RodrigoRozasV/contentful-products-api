@@ -15,7 +15,7 @@ export class QueryProductsHttpDto {
   @Min(1)
   page?: number = 1;
 
- @ApiPropertyOptional({
+  @ApiPropertyOptional({
     description: 'Items per page (maximum 5)',
     minimum: 1,
     maximum: 5,

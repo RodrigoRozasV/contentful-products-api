@@ -12,7 +12,7 @@ describe('Application E2E Tests', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    
+
     app.useGlobalPipes(
       new ValidationPipe({
         whitelist: true,
@@ -61,27 +61,19 @@ describe('Application E2E Tests', () => {
     });
 
     it('/products (GET) - should filter by name', () => {
-      return request(app.getHttpServer())
-        .get('/products?name=test')
-        .expect(200);
+      return request(app.getHttpServer()).get('/products?name=test').expect(200);
     });
 
     it('/products (GET) - should filter by category', () => {
-      return request(app.getHttpServer())
-        .get('/products?category=electronics')
-        .expect(200);
+      return request(app.getHttpServer()).get('/products?category=electronics').expect(200);
     });
 
     it('/products (GET) - should filter by price range', () => {
-      return request(app.getHttpServer())
-        .get('/products?minPrice=10&maxPrice=100')
-        .expect(200);
+      return request(app.getHttpServer()).get('/products?minPrice=10&maxPrice=100').expect(200);
     });
 
     it('/products/:id (GET) - should return 404 for non-existent product', () => {
-      return request(app.getHttpServer())
-        .get('/products/non-existent-id')
-        .expect(404);
+      return request(app.getHttpServer()).get('/products/non-existent-id').expect(404);
     });
   });
 
@@ -105,14 +97,12 @@ describe('Application E2E Tests', () => {
       const response = await request(app.getHttpServer())
         .post('/auth/login')
         .send({ username: 'testuser' });
-      
+
       authToken = response.body.access_token;
     });
 
     it('/reports/deleted-products (GET) - should return 401 without token', () => {
-      return request(app.getHttpServer())
-        .get('/reports/deleted-products')
-        .expect(401);
+      return request(app.getHttpServer()).get('/reports/deleted-products').expect(401);
     });
 
     it('/reports/deleted-products (GET) - should return report with valid token', () => {

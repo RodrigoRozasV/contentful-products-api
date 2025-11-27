@@ -27,10 +27,10 @@ export class Product {
 
   isInPriceRange(minPrice?: number, maxPrice?: number): boolean {
     if (!this.hasPrice()) return false;
-    
+
     if (minPrice !== undefined && this.price! < minPrice) return false;
     if (maxPrice !== undefined && this.price! > maxPrice) return false;
-    
+
     return true;
   }
 

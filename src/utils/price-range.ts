@@ -15,11 +15,18 @@ export class PriceRange {
   }
 
   isInRange(price: number | null): boolean {
-    if (price === null) return false;
-    
-    if (this.min !== undefined && price < this.min) return false;
-    if (this.max !== undefined && price > this.max) return false;
-    
+    if (price === null) {
+      return this.min === undefined && this.max === undefined;
+    }
+
+    if (this.min !== undefined && price < this.min) {
+      return false;
+    }
+
+    if (this.max !== undefined && price > this.max) {
+      return false;
+    }
+
     return true;
   }
 }

@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Delete,
-  Param,
-  Query,
-  Post,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Delete, Param, Query, Post, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { GetProductsUseCase } from '@/application/use-cases/get-products.use-case';
 import { GetProductByIdUseCase } from '@/application/use-cases/get-product-by-id.use-case';
@@ -72,11 +63,7 @@ export class ProductsController {
       query.maxPrice,
     );
 
-    return this.getProductsUseCase.execute(
-      query.page || 1,
-      query.limit || 5,
-      filters,
-    );
+    return this.getProductsUseCase.execute(query.page || 1, query.limit || 5, filters);
   }
 
   @Get(':id')
@@ -103,7 +90,7 @@ export class ProductsController {
   }
 
   @Delete(':id')
- @ApiOperation({
+  @ApiOperation({
     summary: 'Soft delete a product',
     description: 'Marks a product as deleted without removing it from the database',
   })

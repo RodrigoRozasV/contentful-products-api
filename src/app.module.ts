@@ -14,7 +14,7 @@ import { ProductEntity } from './infrastructure/persistence/typeorm/entities/pro
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    
+
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -30,7 +30,7 @@ import { ProductEntity } from './infrastructure/persistence/typeorm/entities/pro
       }),
       inject: [ConfigService],
     }),
-    
+
     ScheduleModule.forRoot(),
     DomainModule,
     ApplicationModule,

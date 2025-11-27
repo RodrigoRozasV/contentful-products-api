@@ -17,9 +17,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Contentful Products API')
-    .setDescription(
-      'API with Hexagonal Architecture',
-    )
+    .setDescription('API with Hexagonal Architecture')
     .setVersion('2.0')
     .addBearerAuth()
     .addTag('Products (Public)', 'Public endpoints for product management')

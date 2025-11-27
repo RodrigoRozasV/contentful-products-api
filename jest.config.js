@@ -28,4 +28,10 @@ module.exports = {
       lines: 30,
     },
   },
+  coverageReporters: [
+    'text',
+    'lcov',
+    'json',
+    'json-summary',
+  ],
 };
