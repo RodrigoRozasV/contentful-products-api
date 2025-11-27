@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IProductRepository } from '../../domain/repositories/product.repository.interface';
-import { ProductStatisticsService } from '../../domain/services/product-statistics.service';
+import { IProductRepository } from '@/domain/repositories/product.repository.interface';
+import { ProductStatisticsService } from '@/domain/services/product-statistics.service';
 import { DateRange } from '@/utils/date-range';
 
 export interface NonDeletedReportFilters {
