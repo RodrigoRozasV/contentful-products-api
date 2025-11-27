@@ -158,7 +158,6 @@ npm run start:prod         # Iniciar versión compilada
 npm run test               # Tests unitarios
 npm run test:watch         # Tests en modo watch
 npm run test:cov           # Tests con cobertura
-npm run test:e2e           # Tests end-to-end
 
 # Code Quality
 npm run lint               # Ejecutar ESLint
